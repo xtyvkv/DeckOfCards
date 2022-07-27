@@ -1,0 +1,31 @@
+﻿@model DeckOfCards.Controllers.HomeController.DisplayResultsModel
+
+<style type="text/css">
+    .drawnCard {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1>Deck #@Model.createResult.deck_id</h1>
+<p><b>Success?</b> @Model.createResult.success</p>
+@{
+    if (Model.createResult.shuffled)
+    {
+    <p><i>The deck has been shuffled.</i></p>
+    }
+    else
+    {
+    <p><i>The deck has not been shuffled.</i></p>
+    }
+}
+<p><b>Cards remaining:</b> @Model.createResult.remaining</p>
+
+<p><h2>Cards Drawn</h2></p>
+@{
+    foreach (var currCard in Model.drawResult.cards)
+    {
+    <p class="drawnCard">@currCard.value of @currCard.suit<br/>
+    <img src="@currCard.image">
+    </p>
+    }
+}
